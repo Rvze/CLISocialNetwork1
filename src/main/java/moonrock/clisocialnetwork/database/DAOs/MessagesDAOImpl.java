@@ -30,4 +30,19 @@ public class MessagesDAOImpl implements MessagesDAO, HibernateConfigurer {
             return message;
         }
     }
+
+    @Override
+    public Message getLastMessage(User user1, User user2) {
+        try (SessionFactory sessionFactory = configuration.buildSessionFactory()) {
+            Session session = sessionFactory.openSession();
+            Transaction transaction = session.beginTransaction();
+            String sql = "SELECT * FROM messages WHERE id = (SELECT max(id) FROM" +
+                    "messages)";
+            Query query = session.createNativeQuery(sql).addEntity(Message.class);
+            Message message = (Message) query.getSingleResult();
+            transaction.commit();
+            session.close();
+            return message;
+        }
+    }
 }

@@ -14,7 +14,7 @@ import javax.persistence.Query;
  */
 public class UserContactsDAOImpl implements UserContactsDAO, HibernateConfigurer {
     @Override
-    public UserContacts getContactName(String username) {
+    public UserContacts getContactsOf(String username) {
         try (SessionFactory sessionFactory = configuration.buildSessionFactory()) {
             Session session = sessionFactory.openSession();
             Transaction transaction = session.beginTransaction();

@@ -36,10 +36,7 @@ public class UsersDAOImpl implements UsersDAO, HibernateConfigurer {
                 session.close();
                 return true;
             }
-
-
         }
-
     }
 
     @Override
@@ -96,13 +93,13 @@ public class UsersDAOImpl implements UsersDAO, HibernateConfigurer {
     }
 
     @Override
-    public void updateUserBio(String username) {
+    public void updateUserBio(String username, UserBio userBio) {
         try (SessionFactory sessionFactory = configuration.buildSessionFactory()) {
             Session session = sessionFactory.openSession();
             Transaction transaction = session.beginTransaction();
-            String sql = "UPDATE bio FROM users WHERE username = :username";
-            Query query = session.createNativeQuery(sql).addEntity(UserBio.class);
-            query.setParameter("username", username);
+            User user = session.get(User.class, username);
+            user.setBio(userBio);
+            session.update(user);
             transaction.commit();
             session.close();
         }

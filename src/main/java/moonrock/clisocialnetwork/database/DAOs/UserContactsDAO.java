@@ -7,5 +7,5 @@ import moonrock.clisocialnetwork.entities.user_contacts.UserContacts;
  * @project CLISocialNetwork
  */
 public interface UserContactsDAO {
-    UserContacts getContactName(String username);
+    UserContacts getContactsOf(String username);
 }

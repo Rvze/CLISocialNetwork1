@@ -9,4 +9,6 @@ import moonrock.clisocialnetwork.entities.user.User;
  */
 public interface MessagesDAO {
     Message getAll(User user1, User user2);
+
+    Message getLastMessage(User user1, User user2);
 }

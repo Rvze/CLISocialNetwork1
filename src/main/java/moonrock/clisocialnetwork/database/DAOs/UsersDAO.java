@@ -1,6 +1,7 @@
 package moonrock.clisocialnetwork.database.DAOs;
 
 import moonrock.clisocialnetwork.entities.user.User;
+import moonrock.clisocialnetwork.entities.user.userData.UserBio;
 
 import java.util.List;
 
@@ -19,5 +20,5 @@ public interface UsersDAO {
 
     void deleteUser(User user);
 
-    void updateUserBio(String username);
+    void updateUserBio(String username, UserBio userBio);
 }
